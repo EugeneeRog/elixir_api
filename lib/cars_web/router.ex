@@ -6,7 +6,6 @@ defmodule CarsWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, {CarsWeb.LayoutView, :root}
-    plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -20,6 +19,7 @@ defmodule CarsWeb.Router do
     get "/", PageController, :index
     get "/get_cars", CarsController, :get_cars
     post "/add_cars", CarsController, :add_cars
+    post "/add_brand", CarsController, :add_brand
   end
 
   # Other scopes may use custom stacks.

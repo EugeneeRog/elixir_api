@@ -1,20 +1,27 @@
 defmodule CarsWeb.CarsController do
   use CarsWeb, :controller
 
+  @moduledoc false
+
   def get_cars(conn, params) do
     res = Cars.Car.get_cars(params)
     case res do
-      :ok = car -> render(conn, "get_cars.json", car: car)
-
-      msg -> render(conn, "error.json", msg: msg)
+      {:error, msg} -> json(put_status(conn, 200), msg)
+      car -> json(put_status(conn, 200), car)
     end
   end
   def add_cars(conn, params) do
     res = Cars.Car.add_cars(params)
     case res do
-      :ok = car -> render(conn, "add_cars.json", car: car);
-
-      msg -> render(conn, "error.json", msg: msg)
+      {:error, msg} -> json(put_status(conn, 200), msg)
+      car -> json(put_status(conn, 200), car)
+    end
+  end
+  def add_brand(conn, params) do
+    res = Cars.Brand.add_brand(params)
+    case res do
+      {:error, msg} -> json(put_status(conn, 200), msg)
+      brand -> json(put_status(conn, 200), brand)
     end
   end
 end
