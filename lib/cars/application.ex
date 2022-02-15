@@ -23,7 +23,10 @@ defmodule Cars.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Cars.Supervisor]
-    Supervisor.start_link(children, opts)
+    ok = Supervisor.start_link(children, opts)
+    :brands = :ets.new(:brands, [:named_table, :public])
+    Cars.Brand.fill_brand_ets()
+    ok
   end
 
   # Tell Phoenix to update the endpoint configuration
@@ -33,4 +36,5 @@ defmodule Cars.Application do
     CarsWeb.Endpoint.config_change(changed, removed)
     :ok
   end
+
 end
