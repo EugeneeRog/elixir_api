@@ -51,7 +51,8 @@ defmodule Cars.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       { :uuid, "~> 1.1.8" },
-      { :poison, "~> 5.0.0" }
+      { :poison, "~> 5.0.0" },
+      {:httpoison, "~> 1.8.0"}
     ]
   end
 
